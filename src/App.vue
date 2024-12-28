@@ -12,7 +12,7 @@ export default {
       userNoteTitle: '',
       userNotes: '',
       userUrgency: '',
-      userDate: Date(),
+      userDate: undefined,
       notes: []
     }
   },
@@ -23,7 +23,8 @@ export default {
           title: this.userNoteTitle,
           text: this.userNotes,
           date: this.userDate,
-          urgensy: this.userUrgency
+          urgensy: this.userUrgency,
+          curDate: Date.now()
         })
         this.userNoteTitle = ''
         this.userNotes = ''
@@ -64,7 +65,7 @@ export default {
       </div>
     </div>
   </div>
-  <div class="container" style="align-content: center; align-items: center; margin: auto">
+  <div class="container_notes" style="align-content: center; align-items: center; margin: auto" v-if="this.notes.length > 0">
     <Notecard v-for="(element, i) in notes" :key="i" :note="element" :index="i" :deletenote="DeleteNote"/>
 
   </div>
@@ -156,7 +157,7 @@ span:hover {
 }
 
 .card_note {
-  border: #222222 solid 1px;
+
   border-radius: 10px;
 }
 </style>
