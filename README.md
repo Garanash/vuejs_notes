@@ -1,6 +1,7 @@
 # untitled4
 
 This template should help get you started developing with Vue 3 in Vite.
+![Uploading Снимок экрана 2024-12-28 в 18.49.32.png…]()
 
 ## Recommended IDE Setup
 
