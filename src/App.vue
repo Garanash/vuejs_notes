@@ -24,7 +24,7 @@ export default {
           text: this.userNotes,
           date: this.userDate,
           urgensy: this.userUrgency,
-          curDate: Date.now()
+          curDate: Date.now().toString()
         })
         this.userNoteTitle = ''
         this.userNotes = ''
@@ -65,7 +65,7 @@ export default {
       </div>
     </div>
   </div>
-  <div class="container_notes" style="align-content: center; align-items: center; margin: auto" v-if="this.notes.length > 0">
+  <div class="container_notes" style="display: flex; flex-wrap: wrap; margin: auto" v-if="this.notes.length > 0">
     <Notecard v-for="(element, i) in notes" :key="i" :note="element" :index="i" :deletenote="DeleteNote"/>
 
   </div>
