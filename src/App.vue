@@ -1,5 +1,10 @@
 <script>
+import Notecard from "@/components/Notecard.vue";
+
 export default {
+  components: {
+    Notecard,
+  },
   data() {
     return {
       placeholderString: 'Введите название заметки',
@@ -14,21 +19,24 @@ export default {
   methods: {
     CreateNote(note) {
       if (this.userNoteTitle.length > 0 && this.userNotes.length > 0 && this.userDate && this.userUrgency) {
-        this.notes.push([
-          this.userNoteTitle,
-          this.userNotes,
-          this.userDate,
-          this.userUrgency
-        ])
+        this.notes.push({
+          title: this.userNoteTitle,
+          text: this.userNotes,
+          date: this.userDate,
+          urgensy: this.userUrgency
+        })
         this.userNoteTitle = ''
         this.userNotes = ''
         this.userDate = Date(1)
         this.userUrgency = ''
       }
+    },
+    DeleteNote(index) {
+      this.notes.splice(index, 1)
     }
   }
 }
-const App = {}
+
 </script>
 
 <template>
@@ -56,8 +64,9 @@ const App = {}
       </div>
     </div>
   </div>
-  <div v-for="(el, i) in notes" :key="i">
-    <p>{{ el }}</p>
+  <div class="container" style="align-content: center; align-items: center; margin: auto">
+    <Notecard v-for="(element, i) in notes" :key="i" :note="element" :index="i" :deletenote="DeleteNote"/>
+
   </div>
 </template>
 
@@ -144,5 +153,10 @@ span:hover {
 
 .btn:hover {
   transform: scale(1.03);
+}
+
+.card_note {
+  border: #222222 solid 1px;
+  border-radius: 10px;
 }
 </style>
